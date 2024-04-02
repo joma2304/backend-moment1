@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tillagda kurser</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Tillagda kurser</h1>
+        <nav class="nav-container">
+            <ul>
+                <li><a href="/">Startsida</a></li>
+                <li><a href="/addcourse">Lägg till kurs</a></li>
+                <li><a href="/about">Om sidan</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="courses-container">
+            <h2>Dina nuvarande tillagda kurser</h2>
+            <ul>
+                <% courses.forEach((course) => { %>
+                    <li class="kurser">
+                        <div class="course-info">
+                            <h3><%= course.course_name %></h3>
+                            <p><strong>Kurskod:</strong> <%= course.course_code %></p>
+                            <p><strong>Progression:</strong> <%= course.progression %></p>
+                            <p><strong>URL:</strong><a href="<%= course.syllabus %>" target="_blank"> <%= course.syllabus %></a></p>
+                            <form action="/removeCourse" method="post">
+                                <input type="hidden" name="course_id" value="<%= course.id %>">
+                                <button id="remove" type="submit">Ta bort kurs</button>
+                            </form>
+                        </div>
+                    </li>
+                <% }) %>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

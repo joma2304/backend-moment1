@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lägg till kurser</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Lägg till kurser</h1>
+        <nav class="nav-container">
+            <ul>
+                <li><a href="/">Startsida</a></li>
+                <li><a href="/addcourse">Lägg till kurs</a></li>
+                <li><a href="/about">Om sidan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="addcourse-container">
+            <h2>Fyll i informationen nedan för att lägga till en ny kurs</h2>
+            <form method="post" action="/index">
+                <div class="form-group">
+                    <label for="name">Kursnamn:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="code">Kurskod:</label>
+                    <input type="text" name="code" id="code" required>
+                </div>
+                <div class="form-group">
+                    <label for="progression">Progression:</label>
+                    <select id="progression" name="progression" required>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="syllabus">URL till kurs:</label>
+                    <input type="text" name="syllabus" id="syllabus" required>
+                </div>
+                <button type="submit">Lägg till ny kurs</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
