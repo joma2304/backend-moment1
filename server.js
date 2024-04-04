@@ -56,12 +56,22 @@ app.post("/index", async(req, res) => {
     const progression = req.body.progression; //LAgra progression i variabel
     const syllabus = req.body.syllabus; //Lagra syllabus i variabel
 
-    //SQL-fråga för att lägga till info från form i databasen
-    const result = await client.query("INSERT INTO courses(course_name, course_code, progression, syllabus) VALUES($1, $2, $3, $4)",
-    [courseName, courseCode, progression, syllabus] 
-);
+        // Kontrollera om något av fälten är tomt
+        if (!courseName || !courseCode || !progression || !syllabus) {
+            // Om något fält är tomt skickas felmeddelande
+            return res.status(400).send("Alla fält måste vara ifyllda.");
+        }
 
-    res.redirect("/"); //Skickas till startsida sen
+    // Om alla fält är ifyllda, utförs SQL-frågan för att lägga till info i databasen
+    try {
+        const result = await client.query("INSERT INTO courses(course_name, course_code, progression, syllabus) VALUES($1, $2, $3, $4)",
+            [courseName, courseCode, progression, syllabus]
+        );
+        res.redirect("/"); // Skickas till startsida
+    } catch (error) {
+        console.error("Fel vid hantering av SQL-fråga:", error);
+        res.status(500).send("Ett fel uppstod vid behandlingen av din begäran.");
+    }
 });
 
 // Hantera POST-begäran för att ta bort en kurs

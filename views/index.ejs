@@ -31,7 +31,7 @@
                             <p><strong>URL:</strong><a href="<%= course.syllabus %>" target="_blank"> <%= course.syllabus %></a></p>
                             <form action="/removeCourse" method="post">
                                 <input type="hidden" name="course_id" value="<%= course.id %>">
-                                <button id="remove" type="submit">Ta bort kurs</button>
+                                <button class="remove" type="submit">Ta bort kurs</button>
                             </form>
                         </div>
                     </li>
